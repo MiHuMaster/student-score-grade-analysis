@@ -1,0 +1,2 @@
+# Preserve reviewed bytes, including line endings, for release hash verification.
+* -text

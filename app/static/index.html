@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="高中常规考试多次成绩分析系统">
+  <title>student-score-analysis · 成绩分析</title>
+  <link rel="icon" type="image/png" href="/static/branding/app-icon.png">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell" id="businessRoot">
+    <aside class="sidebar">
+      <button class="chrome-toggle sidebar-hide" id="sidebarToggle" title="收起左侧导航" aria-label="收起左侧导航">‹</button>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div><strong>student-score-analysis</strong><small>多次成绩分析</small></div>
+      </div>
+      <nav class="nav" aria-label="主导航">
+        <p class="nav-label">分析</p>
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">◫</span>整体分析</button>
+        <button class="nav-item" data-view="classes"><span class="nav-icon">▦</span>班级分析</button>
+        <button class="nav-item" data-view="bands"><span class="nav-icon">▥</span>分数段</button>
+        <button class="nav-item" data-view="subjects"><span class="nav-icon">◎</span>学科分析</button>
+        <button class="nav-item" data-view="groups"><span class="nav-icon">♙</span>学生群体</button>
+        <button class="nav-item" data-view="students"><span class="nav-icon">◇</span>学生个体</button>
+        <p class="nav-label">工作台</p>
+        <button class="nav-item" data-view="import"><span class="nav-icon">⇧</span>数据管理</button>
+        <button class="nav-item" data-view="benchmark"><span class="nav-icon">▤</span>年级数据</button>
+        <button class="nav-item" data-view="export"><span class="nav-icon">⇩</span>导出中心</button>
+        <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span>规则设置</button>
+      </nav>
+      <div class="sidebar-account">
+        <button type="button" id="desktopExitButton">完全退出程序</button>
+      </div>
+      <div class="sidebar-foot">
+        <span class="status-dot"></span>
+        <div><strong>本地安全模式</strong><small>仅监听 127.0.0.1</small></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <button class="chrome-reveal sidebar-reveal" id="sidebarReveal" title="展开左侧导航" aria-label="展开左侧导航">›</button>
+      <button class="chrome-reveal topbar-reveal" id="topbarReveal" title="展开顶部导航" aria-label="展开顶部导航">⌄</button>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="pageEyebrow">成绩分析 / 总览</p>
+          <h1 id="pageTitle">整体分析</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="rule-badge" id="ruleBadge">规则加载中</span>
+          <button class="icon-button" id="refreshButton" title="刷新当前页面" aria-label="刷新当前页面">↻</button>
+          <button class="icon-button no-rotate" id="topbarToggle" title="收起顶部导航" aria-label="收起顶部导航">⌃</button>
+        </div>
+      </header>
+
+      <section class="filter-strip" id="filterStrip">
+        <label>单次考试分析<select id="examFilter"><option value="">加载中…</option></select></label>
+        <div id="comparisonExamFilter"></div>
+        <label>目标方案<select id="targetFilter"><option value="">暂无目标</option></select></label>
+        <label>方向<select id="trackFilter"><option value="">全部方向</option><option value="物理">物理</option><option value="历史">历史</option></select></label>
+        <label>学校<select id="schoolFilter"><option value="">全部学校</option></select></label>
+        <label>班级<select id="classFilter"><option value="">全部班级</option></select></label>
+        <label>临界窗口<select id="windowFilter"><option value="40">线下 40 分</option><option value="60">线下 60 分</option><option value="90">线下 90 分</option></select></label>
+        <button class="primary compact" id="applyFilters">应用筛选</button>
+      </section>
+
+      <section class="content" id="content" aria-live="polite">
+        <div class="loading-card"><div class="spinner"></div><p>正在读取本地数据…</p></div>
+      </section>
+    </main>
+  </div>
+  <dialog id="desktopExitDialog" aria-labelledby="desktopExitTitle">
+    <h2 id="desktopExitTitle">确定要完全退出程序吗？</h2>
+    <p>退出后本地服务将停止，但不会删除成绩数据。</p>
+    <div class="button-row"><button type="button" class="secondary" id="cancelDesktopExit">取消</button><button type="button" class="primary" id="confirmDesktopExit">确认退出</button></div>
+  </dialog>
+  <div id="desktopExitState" hidden role="status" aria-live="polite"><h1>正在退出student-score-analysis…</h1><p>正在安全停止本地服务，请稍候。</p><button type="button" class="secondary" id="retryDesktopExit" hidden>返回重试</button></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

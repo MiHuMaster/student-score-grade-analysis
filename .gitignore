@@ -1,0 +1,21 @@
+/instance/
+/build/
+/dist/
+/.audit/
+/.test-work/
+/.release-venv/
+/.venv/
+**/__pycache__/
+*.py[cod]
+*.db*
+*.log
+.env
+/installer/release-files.iss
+/release/output-manifest.json
+/release/*-result.json
+
+/.release-smoke/
+/.exit-review/
+
+# Original supplied image is preserved locally; build source is in release/.
+/62416624be5e9df50fbc97a839ded421.png
